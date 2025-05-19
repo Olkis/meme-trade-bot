@@ -14,7 +14,7 @@ from utils.virality import check_virality
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
-<<<<<<< HEAD
+<<<<< HEAD
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
