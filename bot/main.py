@@ -10,18 +10,26 @@ from utils.indicators import check_ema_cross, check_candle_pattern
 from utils.risk_filters import check_contract, check_liquidity, load_callers_whitelist
 from utils.virality import check_virality
 
+# Загружаем переменные из .env
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
+<<<<<<< HEAD
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
 logger = logging.getLogger(__name__)
+=======
+# Настраиваем логирование
+logging.basicConfig(level=logging.INFO)
+>>>>>>> c22c2e6685aa835f90199bb3c5544b5ee7f70395
 
+# Обработчик команды /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logger.info("Команда /start получена")
     await update.message.reply_text("👋 Привет! Я трейдинг-бот. Ожидай сигналов...")
 
+<<<<<<< HEAD
 async def check_flip_signal(context: ContextTypes.DEFAULT_TYPE):
     chat_id = context.job.data.get('chat_id')
     if not chat_id:
@@ -95,8 +103,17 @@ async def set_monitoring(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.error(f"Ошибка при запуске мониторинга: {e}")
         await update.message.reply_text(f"Ошибка при запуске мониторинга: {e}")
+=======
+# Обработчик команды /test
+async def test_signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "🚀 [TEST] Новый сигнал: FLIP\nМонета: $CATMOON\nОбъём: $115K\nПроверка пройдена ✅"
+    )
+>>>>>>> c22c2e6685aa835f90199bb3c5544b5ee7f70395
 
+# Основная функция
 def main():
+<<<<<<< HEAD
     if not TOKEN:
         print("Ошибка: TELEGRAM_BOT_TOKEN не найден в .env")
         return
@@ -108,6 +125,17 @@ def main():
 
     print("Бот запускается...")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
+=======
+    # Создаём приложение
+    app = ApplicationBuilder().token(TOKEN).build()
+
+    # Добавляем обработчики команд
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("test", test_signal))
+
+    # Запускаем бота
+    app.run_polling()
+>>>>>>> c22c2e6685aa835f90199bb3c5544b5ee7f70395
 
 if __name__ == "__main__":
     main()
